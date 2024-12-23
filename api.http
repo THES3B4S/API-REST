@@ -1,0 +1,39 @@
+### Recuperar todas las peliculas
+GET http://localhost:1401/movies
+
+### Recuperar una pelicula por id
+GET http://localhost:1401/movies/ccf36f2e-8566-47f7-912d-9f4647250bc7
+
+### Recuperar todas las peliculas por un genero
+GET localhost:1401/movies?genre=action
+
+### Recuperar primera pagina(10) de las peliculas
+GET localhost:1401/movies?page=2
+
+### Enviar pelicula al backend
+POST localhost:1401/movies
+Content-Type: application/json
+
+{
+  "title": "Saw X",
+  "year": 2023,
+  "director": "Kevin Greutert",
+  "duration": 118,
+  "poster": "https://dx35vtwkllhj9.cloudfront.net/lionsgateus/saw-x/images/regions/us/updates/onesheet.jpg",
+  "genre": [
+    "Drama",
+    "Horror"
+  ],
+  "rate": 6.6
+}
+
+### Cambiar parte de las propiedades de una pelicula en especifico
+PATCH localhost:1401/movies/ccf36f2e-8566-47f7-912d-9f4647250bc7
+Content-Type: application/json
+
+{
+  "year": 1999
+}
+
+### Eliminar pelicula seleccionada por id
+DELETE localhost:1401/movies/ccf36f2e-8566-47f7-912d-9f4647250bc7

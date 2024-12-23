@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require('path');
 process.chdir(path.resolve(__dirname));
 console.log(process.cwd());
-const typesAndSchemas_mjs_1 = require("./typesAndSchemas/typesAndSchemas.mjs");
+const typesAndSchemas_cjs_1 = require("./typesAndSchemas/typesAndSchemas.cjs");
 const crypto = require('node:crypto');
 const express = require('express');
 const cors = require('cors'); //middleware
@@ -69,7 +69,7 @@ app.get('/movies/:id', (req, res) => {
     res.status(404).json({ message: 'Movie not found' });
 });
 app.post('/movies', (req, res) => {
-    const result = (0, typesAndSchemas_mjs_1.validateMovie)(req.body);
+    const result = (0, typesAndSchemas_cjs_1.validateMovie)(req.body);
     if (result.error)
         return res.status(400).json({ message: JSON.parse(result.error.message) });
     //concurrencia iria aqui
@@ -82,7 +82,7 @@ app.patch('/movies/:id', (req, res) => {
     const movieIndex = moviesJson.findIndex((movie) => movie.id === id);
     if (movieIndex === -1)
         return res.status(404).json({ message: 'Movie not found' });
-    const result = (0, typesAndSchemas_mjs_1.validatePartialMovie)(req.body);
+    const result = (0, typesAndSchemas_cjs_1.validatePartialMovie)(req.body);
     if (result.error)
         return res.status(400).json({ message: JSON.parse(result.error.message) });
     moviesJson[movieIndex] = Object.assign(Object.assign({}, moviesJson[movieIndex]), result.data);

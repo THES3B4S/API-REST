@@ -1,6 +1,10 @@
 "use strict";
-import * as z from "zod";
-export const MovieSchema = z.object({
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MovieSchema = void 0;
+exports.validateMovie = validateMovie;
+exports.validatePartialMovie = validatePartialMovie;
+const { z } = require('zod');
+exports.MovieSchema = z.object({
     "title": z.string({ invalid_type_error: 'Movie title must be a string', required_error: 'Movie title is required' }),
     "year": z.number().int().min(1900).max(2025),
     "director": z.string(),
@@ -12,9 +16,9 @@ export const MovieSchema = z.object({
     }),
     "rate": z.number().min(0).max(10).default(5),
 });
-export function validateMovie(movie) {
-    return MovieSchema.safeParse(movie);
+function validateMovie(movie) {
+    return exports.MovieSchema.safeParse(movie);
 }
-export function validatePartialMovie(movie) {
-    return MovieSchema.partial().safeParse(movie);
+function validatePartialMovie(movie) {
+    return exports.MovieSchema.partial().safeParse(movie);
 }
